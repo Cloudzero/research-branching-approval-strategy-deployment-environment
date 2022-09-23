@@ -23,9 +23,9 @@ jobs:
   deploy-live:
     name: Deploy to Live
     needs: push-to-branch
+    environment: live
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    environment: live
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
