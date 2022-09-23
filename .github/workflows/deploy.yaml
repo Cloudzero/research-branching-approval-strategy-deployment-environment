@@ -18,8 +18,7 @@ jobs:
     if: github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     steps:
-      - run:
-        - echo Deploy to Alfa
+      - run: echo Deploy to Alfa
 
   deploy-live:
     name: Deploy to Alfa
