@@ -1,25 +1,53 @@
-# myPythonLib Open Source Template Project
-This is a template for a CloudZero Python open source library project. If you want to create a Python library and release it as open source, this template is for you!
+
+# approval-strategy-deployment-environment
+
+This repository simulates a Deployment strategy using [GitHub Action](https://docs.github.com/en/actions/deployment/about-deployments/about-continuous-deployment) using [GitHub Environments](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment).
 
 ## Overview
-Close this repo and go, it should get you started with the basics. Come back and edit this readme afterwards and make it yours 
 
-## Features
-* 1.21 Gigawatts of power
-* May cause the [condition known as hot dog fingers](https://www.youtube.com/watch?v=0o33tZfqF_M&ab_channel=krazytyme) 
+We will maintain the CloudZero usage of the develop branch and the main branch.  Developers will create feature branches and us PR to move changes to develop. Moving changes to the main branch will happens like it does today following the [Development Process](https://cloudzero.atlassian.net/wiki/spaces/ENG/pages/40468620/Deployment+Process)
 
-## Environment Prerequisites
-1. MacOS
-1. Python 3.8 (or better). Use Brew to install Python if you don't know what to do
-1. A healthy love of adventure
+This is were the change happens, before deploying to "live", the deployment will need to be approved.
 
-## Installation
-Clone this puppy and go! Do a search and replace on "mypythonlib" to make sure you make this template your own.
+Here are the command to move from develop to main.
 
-## Usage
-It's a template, you create new projects off of it using Github, here are some [instructions](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) 
+```text
+git checkout develop
+```
 
-## Development Tips
-1. write code
-1. write tests
-1. fix lint errors a few seconds after the build fails
+```text
+git pull --rebase origin develop
+```
+
+```text
+git checkout main
+```
+
+```text
+git pull --rebase origin main
+```
+
+```text
+git merge --ff-only develop
+```
+
+```text
+git status
+```
+
+```text
+git push origin main
+```
+
+The push to main will kick of the deployment to 'live', however, it will pause until it is approved.
+
+## Knowing what is in each environment?
+
+What ever is on the develop or main branch is what is deployed to alfa or main as long as the deployment workflow ran successfully.
+If the workflow were to fail, then what is in the namespace (live/alfa) is the last know successful deployment. A deployment can be visualized in the "Actions" tab.
+The last successful git hash can be used to checkout the code to work on code that is in a namespace.
+![Actions tab view](assets/Actions_failures.png)
+
+## Rollbacks
+
+There are no rollbacks. Developer has to push a change to main.

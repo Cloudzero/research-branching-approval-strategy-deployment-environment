@@ -1,0 +1,30 @@
+name: Build-Test-Deploy 
+
+on:
+  push:
+    branches:
+
+jobs:
+
+  push-to-branch:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Building and Testing
+
+  deploy-alfa:
+    name: Deploy to Alfa
+    needs: push-to-branch
+    if: github.ref == 'refs/heads/develop'
+    runs-on: ubuntu-latest
+    steps:
+      - run:
+        - echo Deploy to Alfa
+
+  deploy-live:
+    name: Deploy to Alfa
+    needs: push-to-branch
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Deploy to Live
