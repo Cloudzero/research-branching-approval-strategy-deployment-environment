@@ -21,10 +21,11 @@ jobs:
       - run: echo Deploy to Alfa
 
   deploy-live:
-    name: Deploy to Alfa
+    name: Deploy to Live
     needs: push-to-branch
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    environment: live
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
