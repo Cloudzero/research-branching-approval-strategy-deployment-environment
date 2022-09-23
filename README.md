@@ -52,6 +52,10 @@ The last successful git hash can be used to checkout the code to work on code th
 
 There are no rollbacks. Developer has to push a change to main.
 
-testing
-testing
-testing
+## Using environments for deployment
+
+GitHub has this note [here](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#creating-an-environment)
+
+> Environments, environment secrets, and environment protection rules are available in public repositories for all products. For access to environments, environment secrets, and deployment branches in private or internal repositories, you must use GitHub Pro, GitHub Team, or GitHub Enterprise. For access to other environment protection rules in private or internal repositories, you must use GitHub Enterprise. For more information, see "GitHub's products."
+
+See this link for [pricing](https://github.com/pricing)
